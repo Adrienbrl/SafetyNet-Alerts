@@ -6,10 +6,8 @@ import com.safetynetalerts.safetynet_alerts.model.Person;
 import com.safetynetalerts.safetynet_alerts.model.MedicalRecord;
 import com.safetynetalerts.safetynet_alerts.repository.DataRepository;
 import org.springframework.stereotype.Service;
+import com.safetynetalerts.safetynet_alerts.utils.DateUtils;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +37,7 @@ public class FirestationService {
 
             if (recordOpt.isPresent()) {
                 String birthdate = recordOpt.get().getBirthdate();
-                int age = calculateAge(birthdate);
+                int age = DateUtils.calculateAge(birthdate);
 
                 if (age <= 18) {
                     children++;
@@ -57,12 +55,6 @@ public class FirestationService {
         }
 
         return new FirestationCoverageDTO(coveredDTOs, adults, children);
-    }
-
-    private int calculateAge(String birthDateString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDate birthDate = LocalDate.parse(birthDateString, formatter);
-        return Period.between(birthDate, LocalDate.now()).getYears();
     }
 }
 

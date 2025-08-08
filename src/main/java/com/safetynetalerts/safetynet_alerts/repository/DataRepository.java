@@ -48,6 +48,14 @@ public class DataRepository {
                 .findFirst();
     }
 
+    public List<Person> getPersonsByAddress(String address) {
+        return persons.stream()
+                .filter(p -> p.getAddress().equals(address))
+                .collect(Collectors.toList());
+    }
+
 }
+
+
 
 

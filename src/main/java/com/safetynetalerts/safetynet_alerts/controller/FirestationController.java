@@ -22,3 +22,5 @@ public class FirestationController {
         return firestationService.getPersonsCoveredByStation(stationNumber);
     }
 }
+
+
