@@ -8,12 +8,18 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Service permettant de charger les données depuis un fichier JSON au démarrage de l'application.
+ */
+
 @Service
 public class JsonDataLoader {
 
+    // Utilitaire Jackson pour désérialiser le JSON
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private DataContainer dataContainer;
+    private DataContainer dataContainer; // Conteneur contenant toutes les données chargées
 
+    // Charge les données depuis le fichier `data.json` après le démarrage de l'application
     @PostConstruct
     public void init() {
         try (InputStream is = getClass().getClassLoader().getResourceAsStream("data.json")) {
@@ -26,6 +32,11 @@ public class JsonDataLoader {
         }
     }
 
+    /**
+     * Retourne les données chargées.
+     *
+     * @return un {@link DataContainer} contenant toutes les données.
+     */
     public DataContainer getData() {
         return dataContainer;
     }

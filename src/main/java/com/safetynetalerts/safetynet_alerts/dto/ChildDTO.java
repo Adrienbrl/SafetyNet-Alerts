@@ -6,14 +6,18 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Représente les informations d'un enfant ainsi que les autres membres de son foyer.
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChildDTO {
-    private String firstName;
-    private String lastName;
-    private int age;
-    private List<HouseholdMemberDTO> otherHouseholdMembers;
+    private String firstName; // Prénom
+    private String lastName; // Nom
+    private int age; // L'âge
+    private List<HouseholdMemberDTO> otherHouseholdMembers; // Liste des autres membres du foyer
 }
 
 
