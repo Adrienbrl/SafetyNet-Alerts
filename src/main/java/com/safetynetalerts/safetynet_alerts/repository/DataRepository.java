@@ -93,6 +93,13 @@ public class DataRepository {
                 .collect(Collectors.toList());
     }
 
+    public Optional<Integer> getStationNumberByAddress(String address) {
+        return firestations.stream()
+                .filter(fs -> fs.getAddress().equals(address))
+                .map(Firestation::getStation)
+                .findFirst();
+    }
+
 }
 
 
